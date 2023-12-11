@@ -104,7 +104,5 @@ std::tuple<uint8_t, uint8_t, uint8_t, uint8_t> IP_addresses::StrToIPParts(const 
 
     uint8_t part3 = stoi(str.substr(start));
 
-    std::tuple<uint8_t, uint8_t, uint8_t, uint8_t> result = std::tuple{ parts[0], parts[1], parts[2], part3 };
-
-    return result;
+    return make_tuple(parts[0], parts[1], parts[2], part3);
 }
