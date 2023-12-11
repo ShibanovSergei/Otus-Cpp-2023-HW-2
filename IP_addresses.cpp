@@ -80,9 +80,9 @@ void IP_addresses::TryDecodeAndThenAdd(const std::string& line)
         auto parts = StrToIPParts(line);
         addresses.push_back(IP_addr(std::get<0>(parts), std::get<1>(parts), std::get<2>(parts), std::get<3>(parts)));
     }
-    catch (exception ex)
+    catch (...)
     {
-        cout << "for line: " << line << " trown exc with msg: " << ex.what() << endl;
+        cout << "for line: " << line << " trown exception" << endl;
     }
 }
 
