@@ -6,9 +6,7 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-    const string fileName = "f:\\3\\ip_filter.tsv";
-
-    //_getcwd
+    const string fileName = "ip_filter.tsv";
 
     IP_addresses ip_pool;
 
@@ -24,7 +22,5 @@ int main(int argc, char* argv[])
     ip_pool.PrintSelected([](IP_addr ip) {return ip.p1 == 46 && ip.p2 == 70; });
     ip_pool.PrintSelected([](IP_addr ip) {return ip.p1 == 46 || ip.p2 == 46 || ip.p3 == 46 || ip.p4 == 46; });
 
-    cout << "Homework 02, ended" << endl;
-    
 	return 0;
 }

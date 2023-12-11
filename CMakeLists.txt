@@ -1,21 +1,39 @@
-﻿# CMakeList.txt: проект CMake для HW_02; включите исходный код и определения,
-# укажите здесь логику для конкретного проекта.
-#
-cmake_minimum_required (VERSION 3.8)
+﻿cmake_minimum_required(VERSION 3.2)
 
-# Enable Hot Reload for MSVC compilers if supported.
-if (POLICY CMP0141)
-  cmake_policy(SET CMP0141 NEW)
-  set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
+set(PATCH_VERSION "1" CACHE INTERNAL "Patch version")
+set(PROJECT_VESRION 0.0.${PATCH_VERSION})
+
+project(hw_02 VERSION ${PROJECT_VESRION})
+
+#configure_file(version.h.in version.h)
+
+add_executable (HW_02_cli "main.cpp" "IP_addresses.cpp" "IP_addresses.h" "IP_addr.h" "IP_addr.cpp")
+
+set_target_properties(HW_02_cli PROPERTIES
+    CXX_STANDARD 20
+    CXX_STANDARD_REQUIRED ON
+)
+target_include_directories(HW_02_cli PRIVATE "${CMAKE_BINARY_DIR}")
+
+if (MSVC)
+    target_compile_options(HW_02_cli PRIVATE
+        /W4
+    )
+else ()
+    target_compile_options(HW_02_cli PRIVATE
+        -Wall -Wextra -pedantic -Werror
+    )
 endif()
 
-project ("HW_02")
 
-# Добавьте источник в исполняемый файл этого проекта.
-add_executable (02 "main.cpp" "IP_addresses.cpp" "IP_addresses.h" "IP_addr.h" "IP_addr.cpp")
+install(TARGETS HW_02_cli RUNTIME DESTINATION bin)
 
-if (CMAKE_VERSION VERSION_GREATER 3.12)
-  set_property(TARGET 02 PROPERTY CXX_STANDARD 20)
-endif()
+set(CPACK_GENERATOR DEB)
 
-# TODO: Добавьте тесты и целевые объекты, если это необходимо.
+set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
+set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
+
+set(CPACK_PACKAGE_CONTACT example@example.com)
+
+include(CPack)
