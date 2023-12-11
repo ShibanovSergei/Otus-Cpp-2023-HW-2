@@ -96,7 +96,7 @@ std::tuple<uint8_t, uint8_t, uint8_t, uint8_t> IP_addresses::StrToIPParts(const 
     for (uint8_t i = 0; i < 3; ++i)
     {
         if (stop == std::string::npos)
-            throw exception("uncorrect IP address: str");
+            throw invalid_argument(std::string("uncorrect IP address:") + str);
 
         parts[i] = stoi(str.substr(start, stop - start));
         start = stop + 1;
