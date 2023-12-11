@@ -4,7 +4,6 @@
 
 using namespace std;
 
-
 int main(int argc, char* argv[])
 {
     const string fileName = "ip_filter.tsv";
