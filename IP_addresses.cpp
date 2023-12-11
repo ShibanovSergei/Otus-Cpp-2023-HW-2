@@ -55,11 +55,11 @@ void IP_addresses::BubleSort()
     bool swappedFlag = false;
     size_t n = addresses.size();
 
-    for (int i = 1; i < n; i++)
+    for (size_t i = 1; i < n; i++)
     {
         swappedFlag = false;
 
-        for (int j = 0; j < n - i; j++)
+        for (size_t j = 0; j < n - i; j++)
         {
             if(addresses[j] < addresses[j+1])
             {
