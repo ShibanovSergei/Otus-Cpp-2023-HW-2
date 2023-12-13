@@ -37,7 +37,7 @@ void IP_addresses::PrintAll()
 {
     for (IP_addr& v: addresses)
     {
-        cout << (short)v.p1 << '.' << (short)v.p2 << '.' << (short)v.p3 << '.' << (short)v.p4 << endl;
+        cout << v << endl;
     }
 }
 
@@ -46,7 +46,7 @@ void IP_addresses::PrintSelected(bool(*predicat)(IP_addr))
     for (IP_addr& v : addresses)
     {
         if (predicat(v))
-            cout << (short)v.p1 << '.' << (short)v.p2 << '.' << (short)v.p3 << '.' << (short)v.p4 << endl;
+            cout << v << endl;
     }
 }
 

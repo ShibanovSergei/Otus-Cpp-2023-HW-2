@@ -18,9 +18,9 @@ int main()
         
     ip_pool.BubleSort();    
     ip_pool.PrintAll();
-    ip_pool.PrintSelected([](IP_addr ip) {return ip.p1 == 1; });
-    ip_pool.PrintSelected([](IP_addr ip) {return ip.p1 == 46 && ip.p2 == 70; });
-    ip_pool.PrintSelected([](IP_addr ip) {return ip.p1 == 46 || ip.p2 == 46 || ip.p3 == 46 || ip.p4 == 46; });
+    ip_pool.PrintSelected([](IP_addr ip) {return ip.get_p1() == 1; });
+    ip_pool.PrintSelected([](IP_addr ip) {return ip.get_p(0) == 46 && ip.get_p(1) == 70; });
+    ip_pool.PrintSelected([](IP_addr ip) {return ip.get_p1() == 46 || ip.get_p2() == 46 || ip.get_p3() == 46 || ip.get_p4() == 46; });
 
 	return 0;
 }
